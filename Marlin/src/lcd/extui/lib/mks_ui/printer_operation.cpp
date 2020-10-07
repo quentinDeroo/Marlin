@@ -57,7 +57,7 @@ void printer_state_polling() {
         //save the positon
         uiCfg.current_x_position_bak = current_position.x;
         uiCfg.current_y_position_bak = current_position.y;
-
+        
         if (gCfgItems.pausePosZ != (float)-1) {
           gcode.process_subcommands_now_P(PSTR("G91"));
           ZERO(public_buf_l);
@@ -72,7 +72,7 @@ void printer_state_polling() {
         }
         uiCfg.print_state = PAUSED;
         uiCfg.current_e_position_bak = current_position.e;
-
+        
         // #if ENABLED(POWER_LOSS_RECOVERY)
         //  if (recovery.enabled) recovery.save(true);
         // #endif
@@ -155,19 +155,21 @@ void printer_state_polling() {
 
   if (uiCfg.print_state == WORKING)
     filament_check();
-
-  TERN_(USE_WIFI_FUNCTION, wifi_looping());
+	
+  #if USE_WIFI_FUNCTION
+    wifi_looping();
+  #endif
 }
 
 void filament_pin_setup() {
   #if PIN_EXISTS(MT_DET_1)
-    SET_INPUT_PULLUP(MT_DET_1_PIN);
+    pinMode(MT_DET_1_PIN, INPUT_PULLUP);
   #endif
   #if PIN_EXISTS(MT_DET_2)
-    SET_INPUT_PULLUP(MT_DET_2_PIN);
+    pinMode(MT_DET_2_PIN, INPUT_PULLUP);
   #endif
   #if PIN_EXISTS(MT_DET_3)
-    SET_INPUT_PULLUP(MT_DET_3_PIN);
+    pinMode(MT_DET_3_PIN, INPUT_PULLUP);
   #endif
 }
 

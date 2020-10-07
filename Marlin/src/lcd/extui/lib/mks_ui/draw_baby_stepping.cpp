@@ -37,7 +37,7 @@
 extern lv_group_t * g;
 static lv_obj_t * scr;
 
-static lv_obj_t *labelV, *buttonV, * zOffsetText;
+static lv_obj_t *buttonV, * zOffsetText;
 
 #define ID_BABY_STEP_X_P    1
 #define ID_BABY_STEP_X_N    2
@@ -60,8 +60,8 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
       }
       else if (event == LV_EVENT_RELEASED) {
         ZERO(baby_buf);
-        sprintf_P(baby_buf, PSTR("M290 X%.3f"),babystep_dist);
-        gcode.process_subcommands_now_P(PSTR(baby_buf));
+				sprintf_P(baby_buf, PSTR("M290 X%.3f"),babystep_dist);
+				gcode.process_subcommands_now_P(PSTR(baby_buf));
         has_adjust_z = 1;
       }
       break;
@@ -71,8 +71,8 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
       }
       else if (event == LV_EVENT_RELEASED) {
         ZERO(baby_buf);
-        sprintf_P(baby_buf, PSTR("M290 X%.3f"),((float)0 - babystep_dist));
-        gcode.process_subcommands_now_P(PSTR(baby_buf));
+				sprintf_P(baby_buf, PSTR("M290 X%.3f"),((float)0 - babystep_dist));
+				gcode.process_subcommands_now_P(PSTR(baby_buf));
         has_adjust_z = 1;
       }
       break;
@@ -82,8 +82,8 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
       }
       else if (event == LV_EVENT_RELEASED) {
         ZERO(baby_buf);
-        sprintf_P(baby_buf, PSTR("M290 Y%.3f"), babystep_dist);
-        gcode.process_subcommands_now_P(PSTR(baby_buf));
+				sprintf_P(baby_buf, PSTR("M290 Y%.3f"), babystep_dist);
+				gcode.process_subcommands_now_P(PSTR(baby_buf));
         has_adjust_z = 1;
       }
       break;
@@ -93,8 +93,8 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
       }
       else if (event == LV_EVENT_RELEASED) {
         ZERO(baby_buf);
-        sprintf_P(baby_buf, PSTR("M290 Y%.3f"),((float)0 - babystep_dist));
-        gcode.process_subcommands_now_P(PSTR(baby_buf));
+				sprintf_P(baby_buf, PSTR("M290 Y%.3f"),((float)0 - babystep_dist));
+				gcode.process_subcommands_now_P(PSTR(baby_buf));
         has_adjust_z = 1;
       }
       break;
@@ -104,8 +104,8 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
       }
       else if (event == LV_EVENT_RELEASED) {
         ZERO(baby_buf);
-        sprintf_P(baby_buf, PSTR("M290 Z%.3f"), babystep_dist);
-        gcode.process_subcommands_now_P(PSTR(baby_buf));
+				sprintf_P(baby_buf, PSTR("M290 Z%.3f"), babystep_dist);
+				gcode.process_subcommands_now_P(PSTR(baby_buf));
         has_adjust_z = 1;
       }
       break;
@@ -115,8 +115,8 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
       }
       else if (event == LV_EVENT_RELEASED) {
         ZERO(baby_buf);
-        sprintf_P(baby_buf, PSTR("M290 Z%.3f"),((float)0 - babystep_dist));
-        gcode.process_subcommands_now_P(PSTR(baby_buf));
+				sprintf_P(baby_buf, PSTR("M290 Z%.3f"),((float)0 - babystep_dist));
+				gcode.process_subcommands_now_P(PSTR(baby_buf));
         has_adjust_z = 1;
       }
       break;
@@ -125,12 +125,15 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
         // nothing to do
       }
       else if (event == LV_EVENT_RELEASED) {
-        if (abs((int)(100 * babystep_dist)) == 1)
-          babystep_dist = 0.05;
-        else if (abs((int)(100 * babystep_dist)) == 5)
-          babystep_dist = 0.1;
-        else
-          babystep_dist = 0.01;
+        if(abs((int)(100 * babystep_dist)) == 1) {
+					babystep_dist = 0.05;
+				}
+				else if(abs((int)(100 * babystep_dist)) == 5) {
+					babystep_dist = 0.1;
+				}
+				else {
+					babystep_dist = 0.01;
+				}
         disp_baby_step_dist();
       }
 
@@ -140,10 +143,10 @@ static void event_handler(lv_obj_t * obj, lv_event_t event) {
         // nothing to do
       }
       else if (event == LV_EVENT_RELEASED) {
-        if (has_adjust_z == 1) {
-          gcode.process_subcommands_now_P(PSTR("M500"));
+        if(has_adjust_z == 1) {
+					gcode.process_subcommands_now_P(PSTR("M500"));
           has_adjust_z = 0;
-        }
+				}
         clear_cur_ui();
         draw_return_ui();
       }
@@ -173,7 +176,8 @@ void lv_draw_baby_stepping(void) {
 
   lv_refr_now(lv_refr_get_disp_refreshing());
 
-  // Create an Image button
+
+  /*Create an Image button*/
   buttonXI   = lv_imgbtn_create(scr, NULL);
   buttonXD   = lv_imgbtn_create(scr, NULL);
   buttonYI   = lv_imgbtn_create(scr, NULL);
@@ -188,48 +192,55 @@ void lv_draw_baby_stepping(void) {
   lv_imgbtn_set_src(buttonXI, LV_BTN_STATE_PR, "F:/bmp_xAdd.bin");
   lv_imgbtn_set_style(buttonXI, LV_BTN_STATE_PR, &tft_style_label_pre);
   lv_imgbtn_set_style(buttonXI, LV_BTN_STATE_REL, &tft_style_label_rel);
-
+  
+  
   #if 1
     lv_obj_set_event_cb_mks(buttonXD, event_handler, ID_BABY_STEP_X_N, NULL, 0);
     lv_imgbtn_set_src(buttonXD, LV_BTN_STATE_REL, "F:/bmp_xDec.bin");
     lv_imgbtn_set_src(buttonXD, LV_BTN_STATE_PR, "F:/bmp_xDec.bin");
     lv_imgbtn_set_style(buttonXD, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonXD, LV_BTN_STATE_REL, &tft_style_label_rel);
+    
 
     lv_obj_set_event_cb_mks(buttonYI, event_handler, ID_BABY_STEP_Y_P, NULL, 0);
     lv_imgbtn_set_src(buttonYI, LV_BTN_STATE_REL, "F:/bmp_yAdd.bin");
     lv_imgbtn_set_src(buttonYI, LV_BTN_STATE_PR, "F:/bmp_yAdd.bin");
     lv_imgbtn_set_style(buttonYI, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonYI, LV_BTN_STATE_REL, &tft_style_label_rel);
+    
 
     lv_obj_set_event_cb_mks(buttonYD, event_handler, ID_BABY_STEP_Y_N, NULL, 0);
     lv_imgbtn_set_src(buttonYD, LV_BTN_STATE_REL, "F:/bmp_yDec.bin");
     lv_imgbtn_set_src(buttonYD, LV_BTN_STATE_PR, "F:/bmp_yDec.bin");
     lv_imgbtn_set_style(buttonYD, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonYD, LV_BTN_STATE_REL, &tft_style_label_rel);
+    
 
     lv_obj_set_event_cb_mks(buttonZI, event_handler, ID_BABY_STEP_Z_P, NULL, 0);
     lv_imgbtn_set_src(buttonZI, LV_BTN_STATE_REL, "F:/bmp_zAdd.bin");
     lv_imgbtn_set_src(buttonZI, LV_BTN_STATE_PR, "F:/bmp_zAdd.bin");
     lv_imgbtn_set_style(buttonZI, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonZI, LV_BTN_STATE_REL, &tft_style_label_rel);
+    
 
     lv_obj_set_event_cb_mks(buttonZD, event_handler, ID_BABY_STEP_Z_N, NULL, 0);
     lv_imgbtn_set_src(buttonZD, LV_BTN_STATE_REL, "F:/bmp_zDec.bin");
     lv_imgbtn_set_src(buttonZD, LV_BTN_STATE_PR, "F:/bmp_zDec.bin");
     lv_imgbtn_set_style(buttonZD, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonZD, LV_BTN_STATE_REL, &tft_style_label_rel);
+    
 
     lv_obj_set_event_cb_mks(buttonV, event_handler, ID_BABY_STEP_DIST, NULL, 0);
     lv_imgbtn_set_style(buttonV, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonV, LV_BTN_STATE_REL, &tft_style_label_rel);
+    
 
     lv_obj_set_event_cb_mks(buttonBack, event_handler, ID_BABY_STEP_RETURN, NULL, 0);
     lv_imgbtn_set_src(buttonBack, LV_BTN_STATE_REL, "F:/bmp_return.bin");
     lv_imgbtn_set_src(buttonBack, LV_BTN_STATE_PR, "F:/bmp_return.bin");
     lv_imgbtn_set_style(buttonBack, LV_BTN_STATE_PR, &tft_style_label_pre);
     lv_imgbtn_set_style(buttonBack, LV_BTN_STATE_REL, &tft_style_label_rel);
-
+    
   #endif // if 1
   lv_obj_set_pos(buttonXI, INTERVAL_V, titleHeight);
   lv_obj_set_pos(buttonYI, BTN_X_PIXEL + INTERVAL_V * 2, titleHeight);
@@ -240,7 +251,7 @@ void lv_draw_baby_stepping(void) {
   lv_obj_set_pos(buttonZD, BTN_X_PIXEL * 2 + INTERVAL_V * 3, BTN_Y_PIXEL + INTERVAL_H + titleHeight);
   lv_obj_set_pos(buttonBack, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight);
 
-  // Create labels on the image buttons
+  /*Create a label on the Image button*/
   lv_btn_set_layout(buttonXI, LV_LAYOUT_OFF);
   lv_btn_set_layout(buttonXD, LV_LAYOUT_OFF);
   lv_btn_set_layout(buttonYI, LV_LAYOUT_OFF);
@@ -250,14 +261,14 @@ void lv_draw_baby_stepping(void) {
   lv_btn_set_layout(buttonV, LV_LAYOUT_OFF);
   lv_btn_set_layout(buttonBack, LV_LAYOUT_OFF);
 
-  lv_obj_t *labelXI = lv_label_create(buttonXI, NULL);
-  lv_obj_t *labelXD = lv_label_create(buttonXD, NULL);
-  lv_obj_t *labelYI = lv_label_create(buttonYI, NULL);
-  lv_obj_t *labelYD = lv_label_create(buttonYD, NULL);
-  lv_obj_t *labelZI = lv_label_create(buttonZI, NULL);
-  lv_obj_t *labelZD = lv_label_create(buttonZD, NULL);
-  labelV = lv_label_create(buttonV, NULL);
-  lv_obj_t *label_Back = lv_label_create(buttonBack, NULL);
+  /*lv_obj_t * labelXI = lv_label_create(buttonXI, NULL);
+  lv_obj_t * labelXD = lv_label_create(buttonXD, NULL);
+  lv_obj_t * labelYI = lv_label_create(buttonYI, NULL);
+  lv_obj_t * labelYD = lv_label_create(buttonYD, NULL);
+  lv_obj_t * labelZI = lv_label_create(buttonZI, NULL);
+  lv_obj_t * labelZD = lv_label_create(buttonZD, NULL);*/
+  //labelV = lv_label_create(buttonV, NULL);
+  /*lv_obj_t * label_Back = lv_label_create(buttonBack, NULL);
 
   if (gCfgItems.multiple_language != 0) {
     lv_label_set_text(labelXI, move_menu.x_add);
@@ -280,20 +291,20 @@ void lv_draw_baby_stepping(void) {
 
     lv_label_set_text(label_Back, common_menu.text_back);
     lv_obj_align(label_Back, buttonBack, LV_ALIGN_IN_BOTTOM_MID, 0, BUTTON_TEXT_Y_OFFSET);
-  }
+  }*/
 
-  #if HAS_ROTARY_ENCODER
-    if (gCfgItems.encoder_enable) {
-      lv_group_add_obj(g, buttonXI);
-      lv_group_add_obj(g, buttonXD);
-      lv_group_add_obj(g, buttonYI);
-      lv_group_add_obj(g, buttonYD);
-      lv_group_add_obj(g, buttonZI);
-      lv_group_add_obj(g, buttonZD);
-      lv_group_add_obj(g, buttonV);
-      lv_group_add_obj(g, buttonBack);
-    }
-  #endif
+  #if BUTTONS_EXIST(EN1, EN2, ENC)
+	if (gCfgItems.encoder_enable == true) {
+		lv_group_add_obj(g, buttonXI);
+  		lv_group_add_obj(g, buttonXD);
+		lv_group_add_obj(g, buttonYI);
+		lv_group_add_obj(g, buttonYD);
+		lv_group_add_obj(g, buttonZI);
+		lv_group_add_obj(g, buttonZD);
+		lv_group_add_obj(g, buttonV);
+		lv_group_add_obj(g, buttonBack);
+	}
+  #endif // BUTTONS_EXIST(EN1, EN2, ENC)
 
   disp_baby_step_dist();
 
@@ -318,7 +329,7 @@ void disp_baby_step_dist() {
     lv_imgbtn_set_src(buttonV, LV_BTN_STATE_REL, "F:/bmp_baby_move0_1.bin");
     lv_imgbtn_set_src(buttonV, LV_BTN_STATE_PR, "F:/bmp_baby_move0_1.bin");
   }
-  if (gCfgItems.multiple_language != 0) {
+  /*if (gCfgItems.multiple_language != 0) {
     if ((int)(100 * babystep_dist) == 1) {
       lv_label_set_text(labelV, move_menu.step_001mm);
       lv_obj_align(labelV, buttonV, LV_ALIGN_IN_BOTTOM_MID, 0, BUTTON_TEXT_Y_OFFSET);
@@ -331,22 +342,24 @@ void disp_baby_step_dist() {
       lv_label_set_text(labelV, move_menu.step_01mm);
       lv_obj_align(labelV, buttonV, LV_ALIGN_IN_BOTTOM_MID, 0, BUTTON_TEXT_Y_OFFSET);
     }
-  }
+  }*/
 }
 
 void disp_z_offset_value() {
-  char buf[20];
+	char buf[20];
 
-  ZERO(buf);
-  sprintf_P(buf, PSTR("offset Z: %.3f"), (double)TERN(HAS_BED_PROBE, probe.offset.z, 0));
+	ZERO(buf);
+	sprintf_P(buf, PSTR("offset Z: %.3f"), (double)TERN(HAS_BED_PROBE, probe.offset.z, 0));
   lv_label_set_text(zOffsetText, buf);
 }
 
-void lv_clear_baby_stepping() {
-  #if HAS_ROTARY_ENCODER
-    if (gCfgItems.encoder_enable) lv_group_remove_all_objs(g);
-  #endif
-  lv_obj_del(scr);
+void lv_clear_baby_stepping() { 
+	#if BUTTONS_EXIST(EN1, EN2, ENC)
+	if (gCfgItems.encoder_enable == true) {
+		lv_group_remove_all_objs(g);
+	}
+  	#endif // BUTTONS_EXIST(EN1, EN2, ENC)
+	lv_obj_del(scr); 
 }
 
 #endif // HAS_TFT_LVGL_UI

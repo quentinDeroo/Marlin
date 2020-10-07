@@ -21,7 +21,7 @@
  */
 #pragma once
 
-#include "../../../../inc/MarlinConfig.h"
+#include "../../inc/MarlinConfigPre.h"
 
 #include "../../../../libs/W25Qxx.h"
 
@@ -37,7 +37,7 @@
   #define HAS_GCODE_PREVIEW               1
 #endif
 #ifndef HAS_LANG_SELECT_SCREEN
-  #define HAS_LANG_SELECT_SCREEN          1
+  #define HAS_LANG_SELECT_SCREEN          0
 #endif
 #ifndef HAS_BAK_VIEW_IN_FLASH
   #define HAS_BAK_VIEW_IN_FLASH           1
@@ -133,7 +133,7 @@
 #define OTHERS_COMMAND_ADDR_4           OTHERS_COMMAND_ADDR_3 + 100
 
 #ifdef __cplusplus
-  extern "C" { /* C-declarations for C++ */
+extern "C" { /* C-declarations for C++ */
 #endif
 
 union union32 {
@@ -149,7 +149,7 @@ struct pic_msg {
 
 typedef struct pic_msg PIC_MSG;
 
-#define BMP_WRITE_BUF_LEN 512
+#define BMP_WRITE_BUF_LEN 256
 
 #define PICINFOADDR   0x1000
 
@@ -165,6 +165,8 @@ extern void spi_flash_read_test();
 extern void default_view_Read(uint8_t *default_view_Rbuff, uint32_t default_view_Readsize);
 extern void flash_view_Read(uint8_t *flash_view_Rbuff, uint32_t flash_view_Readsize);
 
+//extern W25QXXFlash W25QXX;
+
 #ifdef __cplusplus
-  } /* C-declarations for C++ */
+} /* C-declarations for C++ */
 #endif

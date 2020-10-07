@@ -275,13 +275,13 @@ typedef struct machine_common_disp{
   const char *zPos;
 
   const char *WifiConfTitle;
-  const char *wifiMode;
-  const char *wifiName;
-  const char *wifiPassWord;
-  const char *wifiCloud;
-  const char *wifiConfig;
-  const char *wifiEdit;
-  const char *wifiConfigTips;
+	const char *wifiMode;
+	const char *wifiName;
+	const char *wifiPassWord;
+	const char *wifiCloud;
+	const char *wifiConfig;
+	const char *wifiEdit;
+	const char *wifiConfigTips;
 
   const char *OffsetConfTitle;
   const char *Xoffset;
@@ -755,29 +755,29 @@ extern eeprom_def eeprom_menu;
 #define TEMP_UNIT_SYBOL       "%d℃"
 #define FLOAT_TEMP_UNIT_SYBOL "%.1f℃"
 
-#define TEXT_1C             "1℃"
-#define TEXT_5C             "5℃"
-#define TEXT_10C            "10℃"
+#define TEXT_1C             ""
+#define TEXT_5C             ""
+#define TEXT_10C            ""
 
-#define AXIS_X_ADD_TEXT     "X+"
-#define AXIS_X_DEC_TEXT     "X-"
-#define AXIS_Y_ADD_TEXT     "Y+"
-#define AXIS_Y_DEC_TEXT     "Y-"
-#define AXIS_Z_ADD_TEXT     "Z+"
-#define AXIS_Z_DEC_TEXT     "Z-"
-#define TEXT_001MM          "0.01mm"
-#define TEXT_005MM          "0.05mm"
-#define TEXT_01MM           "0.1mm"
-#define TEXT_1MM            "1mm"
-#define TEXT_10MM           "10mm"
+#define AXIS_X_ADD_TEXT     ""
+#define AXIS_X_DEC_TEXT     ""
+#define AXIS_Y_ADD_TEXT     ""
+#define AXIS_Y_DEC_TEXT     ""
+#define AXIS_Z_ADD_TEXT     ""
+#define AXIS_Z_DEC_TEXT     ""
+#define TEXT_001MM          ""
+#define TEXT_005MM          ""
+#define TEXT_01MM           ""
+#define TEXT_1MM            ""
+#define TEXT_10MM           ""
 
-#define EXTRUDE_1MM_TEXT    "1mm"
-#define EXTRUDE_5MM_TEXT    "5mm"
-#define EXTRUDE_10MM_TEXT   "10mm"
+#define EXTRUDE_1MM_TEXT    ""
+#define EXTRUDE_5MM_TEXT    ""
+#define EXTRUDE_10MM_TEXT   ""
 
-#define STEP_1PERCENT       "1%"
-#define STEP_5PERCENT       "5%"
-#define STEP_10PERCENT      "10%"
+#define STEP_1PERCENT       ""
+#define STEP_5PERCENT       ""
+#define STEP_10PERCENT      ""
 
 #define LANGUAGE_S_CN       "简体"
 #define LANGUAGE_T_CN       "繁体"
@@ -792,10 +792,10 @@ extern eeprom_def eeprom_menu;
 #define LANGUAGE_RU         "русский"
 #define LANGUAGE_SP         "español"
 
-#define HOME_X_TEXT         "X"
-#define HOME_Y_TEXT         "Y"
-#define HOME_Z_TEXT         "Z"
-#define HOME_ALL_TEXT       "All"
+#define HOME_X_TEXT         ""
+#define HOME_Y_TEXT         ""
+#define HOME_Z_TEXT         ""
+#define HOME_ALL_TEXT       ""
 //#if defined(MKS_ROBIN_NANO)
 #define ABOUT_TYPE_TEXT     "MKS Robin Pro"
 //#elif defined(MKS_ROBIN_MINI)
@@ -804,9 +804,9 @@ extern eeprom_def eeprom_menu;
 #define ABOUT_VERSION_TEXT  "1.0.0"
 //#define ABOUT_WIFI_TEXT   "WiFi:"
 
-#define FAN_OPEN_TEXT       "100%"
-#define FAN_HALF_TEXT       "50%"
-#define FAN_CLOSE_TEXT      "0%"
+#define FAN_OPEN_TEXT       ""
+#define FAN_HALF_TEXT       ""
+#define FAN_CLOSE_TEXT      ""
 //#define FAN_TIPS1_TEXT      "FAN"
 //#define FAN_TIPS2_TEXT      "FAN\nClose"
 
@@ -830,8 +830,8 @@ extern eeprom_def eeprom_menu;
 #define DIALOG_UPLOAD_SPEED_EN          "Speed"
 #define DIALOG_UPDATE_WIFI_FIRMWARE_EN  "Updating wifi model firmware"
 #define DIALOG_UPDATE_WIFI_WEB_EN       "Updating wifi model web data"
-#define DIALOG_UPDATE_NO_DEVICE_EN      "please check \nwether memory device insert!"
+#define DIALOG_UPDATE_NO_DEVICE_EN 			"please check \nwether memory device insert!"
 
-#define ZOFFSET_STEP001                 "0.01mm"
-#define ZOFFSET_STEP01                  "0.1mm"
-#define ZOFFSET_STEP1                   "1mm"
+#define ZOFFSET_STEP001                 ""
+#define ZOFFSET_STEP01                  ""
+#define ZOFFSET_STEP1                   ""
