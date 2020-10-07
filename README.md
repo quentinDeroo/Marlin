@@ -12,9 +12,9 @@ Note that I removed the multi language so it's only available in english.
 ## Features
 The firmware of Mks Robin Nano, based on [Marlin2.0.x](https://github.com/MarlinFirmware/Marlin)(The based version is based on Marlin2.0.7).
 
-![](https://github.com/quentinDeroo/Marlin/tree/2.0.x/Images/main.png)
-![](https://github.com/quentinDeroo/Marlin/tree/2.0.x/Images/tools.png)
-![](https://github.com/quentinDeroo/Marlin/tree/2.0.x/Images/printing.png)
+![Main menu](https://github.com/quentinDeroo/Marlin/tree/2.0.x/Images/main.jpg)
+![Tools menu](https://github.com/quentinDeroo/Marlin/tree/2.0.x/Images/tools.jpg)
+![Printing screen](https://github.com/quentinDeroo/Marlin/tree/2.0.x/Images/printing.jpg)
 
 ## Update firmware
 Download the release and put the `Robin_nano35.bin` and the `assets` folder at the root of the SD card. 
